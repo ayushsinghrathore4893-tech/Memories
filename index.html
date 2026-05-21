@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>For You ♡</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inconsolata:wght@300;400&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inconsolata:wght@300;400&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --ink:#f5f0e8;--muted:rgba(245,240,232,0.42);--faint:rgba(245,240,232,0.12);
@@ -13,13 +13,7 @@
       --acc-faint:rgba(232,180,184,0.13);--acc-border:rgba(232,180,184,0.46);
     }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-    html,body{width:100%;height:100%;overflow:hidden;}
-    body{background:#03020a;font-family:'Inconsolata',monospace;color:var(--ink);user-select:none;}
-
-    /* ── HEART CURSOR TRAIL ── */
-    .heart-trail{position:fixed;pointer-events:none;z-index:9999;font-size:10px;color:var(--accent);opacity:1;transform:translate(-50%,-50%);animation:heartFade 1.1s ease-out forwards;}
-    @keyframes heartFade{0%{opacity:.85;transform:translate(-50%,-50%) scale(1);}100%{opacity:0;transform:translate(-50%,-100%) scale(0.3);}}
-
+    body{background:#03020a;overflow:hidden;font-family:'Inconsolata',monospace;color:var(--ink);user-select:none;cursor:default;}
     canvas{display:block;position:fixed;inset:0;z-index:1;}
     #grain{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:0.38;
       background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");}
@@ -46,8 +40,6 @@
     #progress-wrap{position:fixed;bottom:0;left:0;right:0;height:1.5px;background:rgba(245,240,232,0.05);z-index:15;pointer-events:none;}
     #progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),rgba(232,180,184,0.28));width:0%;transition:width 0.28s linear;}
     #time-display{position:fixed;bottom:1.5rem;right:2.4rem;font-size:0.54rem;letter-spacing:0.25em;color:var(--muted);pointer-events:none;z-index:15;opacity:0;animation:fadeUp 2s 1.6s ease forwards;}
-
-    /* ── SPLASH ── */
     #splash{position:fixed;inset:0;z-index:50;background:#03020a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity 1.4s ease;}
     #splash.out{opacity:0;pointer-events:none;}
     #splash-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(2.4rem,7vw,4.5rem);letter-spacing:0.12em;color:var(--ink);text-align:center;animation:fadeUp 2s 0.3s ease both;}
@@ -57,25 +49,6 @@
     #start-btn:hover{background:rgba(232,180,184,0.26);transform:scale(1.05);}
     #start-btn:active{transform:scale(0.97);}
     .rule{width:2.5rem;height:1px;background:linear-gradient(90deg,transparent,var(--acc-border),transparent);animation:fadeUp 2s 1.1s ease both;}
-
-    /* ── SKY PULSE OVERLAY ── */
-    #sky-pulse{position:fixed;inset:0;z-index:8;pointer-events:none;background:radial-gradient(ellipse at center,rgba(232,180,184,0.18) 0%,transparent 70%);opacity:0;transition:opacity 0.1s;}
-
-    /* ── PHOTO CLICK RIPPLE ── */
-    .ripple-ring{position:fixed;pointer-events:none;z-index:20;border-radius:50%;border:1px solid rgba(232,180,184,0.7);transform:translate(-50%,-50%) scale(0);animation:rippleOut 1.2s ease-out forwards;}
-    @keyframes rippleOut{0%{transform:translate(-50%,-50%) scale(0);opacity:0.9;}100%{transform:translate(-50%,-50%) scale(4);opacity:0;}}
-
-
-
-    /* ── LAST STAR MESSAGE ── */
-    #last-star-msg{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:30;pointer-events:none;text-align:center;opacity:0;transition:opacity 2.5s ease;}
-    #last-star-msg.visible{opacity:1;}
-    #last-star-msg p{font-family:'Dancing Script',cursive;font-size:clamp(1.8rem,4vw,3rem);color:var(--ink);text-shadow:0 0 60px rgba(232,180,184,0.8),0 0 120px rgba(232,180,184,0.4);letter-spacing:0.05em;line-height:1.6;}
-    #last-star-msg .star-line{display:block;font-family:'Inconsolata',monospace;font-size:0.55rem;letter-spacing:0.4em;color:var(--accent);text-transform:uppercase;margin-top:1rem;opacity:0.7;}
-
-    /* ── CONSTELLATION CANVAS ── */
-    #constellation-canvas{position:fixed;inset:0;z-index:3;pointer-events:none;}
-
     @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
     @keyframes lyricIn{0%{opacity:0;transform:translateY(12px) scale(0.97)}55%{opacity:1;transform:translateY(-3px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
     @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(0.5);opacity:0.3}}
@@ -85,19 +58,6 @@
 </head>
 <body>
 <div id="grain"></div>
-
-<!-- Last Star Message -->
-<div id="last-star-msg">
-  <p>Still here.<br>Still yours.</p>
-  <span class="star-line">always · forever · beyond</span>
-</div>
-
-<!-- Sky pulse overlay -->
-<div id="sky-pulse"></div>
-
-<!-- Constellation canvas (2D overlay) -->
-<canvas id="constellation-canvas"></canvas>
-
 <div id="splash">
   <div id="splash-title">For You</div>
   <div id="splash-sub">a lone planet of memories · adrift in the universe</div>
@@ -105,9 +65,7 @@
   <div id="splash-heart">♡</div>
   <button id="start-btn">Begin</button>
 </div>
-
 <canvas id="three-canvas"></canvas>
-
 <div id="hud">
   <div id="wordmark"><h1>Edipverse</h1><span>Our Universe · love surviving beyond stars</span></div>
   <div id="counter"></div>
@@ -127,76 +85,14 @@
 <div id="progress-wrap"><div id="progress-bar"></div></div>
 
 <script id="photo-data" type="application/json">
-["https://iili.io/BZuv6Av.png","https://iili.io/BZuvPNR.png","https://iili.io/BZuv4HJ.png","https://iili.io/BZugFiN.png","https://iili.io/BZug3Vp.png","https://iili.io/BZuriGV.jpg","https://iili.io/BZur4Zx.png","https://iili.io/BZurPCQ.png","https://iili.io/BZurrjj.jpg","https://iili.io/BZu6rqQ.png","https://iili.io/BZuPSyX.png","https://iili.io/BZuLTvI.png","https://iili.io/BZuZfqJ.png","https://iili.io/BZuZq0v.png","https://iili.io/BZutva4.png","https://iili.io/BZumIaf.png","https://iili.io/BZAJYrX.png","https://iili.io/BZAJ71t.png","https://iili.io/BZAd8Sn.png","https://iili.io/BZAdU9s.png","https://iili.io/BZA2gg1.jpg","https://iili.io/BZAKkXf.jpg","https://iili.io/BZ4zHfn.png","https://iili.io/BZAqbHP.jpg","https://iili.io/BZAC7Ev.png","https://iili.io/BZAxsa4.jpg","https://iili.io/BZAzOiu.jpg","https://iili.io/BZAIQh7.jpg","https://iili.io/BZARHvf.jpg","https://iili.io/BZA0IlS.png","https://iili.io/BZAEXoJ.png","https://iili.io/BZAEUts.png","https://iili.io/BZAEUts.png","https://iili.io/BZAEXoJ.png","https://iili.io/BZAE8AX.png","https://iili.io/BZAEv9t.png","https://iili.io/BZAEsl2.png","https://iili.io/BZAEDNe.png","https://iili.io/BZAEtR9.png","https://iili.io/BZAEpob.png","https://iili.io/BZAEbDu.png","https://iili.io/BZAEyVj.png","https://iili.io/BZANeUJ.png","https://iili.io/BZANNKg.png","https://iili.io/BZANOla.png","https://iili.io/BZAOpkv.jpg","https://iili.io/BZYs794.png","https://iili.io/BZWhogf.jpg","https://iili.io/BZWhqsn.jpg","https://iili.io/BZWhfWX.jpg","https://iili.io/BZWhCfs.jpg","https://iili.io/BZWhubS.jpg","https://iili.io/BZWhRz7.jpg","https://iili.io/BZWh5X9.jpg","https://iili.io/BZAqmR1.jpg","https://iili.io/BZ4zJls.png","https://iili.io/BZ4zdUG.png","https://iili.io/BZ4xyiX.png","https://iili.io/BZ4zmkx.jpg","https://iili.io/BZ4zb7j.jpg","https://iili.io/BZ4zDdb.jpg","https://iili.io/Bt02kDg.png"]
+["file_1.png, file_2.png, file_3.png, file_4.png, file_5.png, file_6.png, file_7.png, file_8.png, file_9.png, file_10.png, file_11.png, file_12.png, file_13.png, file_14.png, file_15.png, file_16.png, file_17.png, file_18.png, file_19.png, file_20.png, file_21.png, file_22.png, file_23.png, file_24.png, file_25.png, file_26.png, file_27.png, file_28.png, file_29.png, file_30.png, file_31.png, file_32.png, file_33.png, file_34.png, file_35.png, file_36.png, file_37.png, file_38.png, file_39.png, file_40.png, file_41.png, file_42.png, file_43.png, file_44.png, file_45.png, file_46.png, file_47.png, file_48.png, file_49.png, file_50.png, file_51.png, file_52.png, file_53.png, file_54.png, file_55.png, file_61.jpeg, file_56.png, file_57.png, file_58.png, file_59.png, file_60.png, file_61.png, file_62.png"]
 </script>
 
 <script id="lyrics-data" type="application/json">
-[
-  { "t": 0, "line": "♡" },
-  { "t": 8, "line": "They say, \"The holy water's watered down" },
-  { "t": 12, "line": "And this town's lost its faith" },
-  { "t": 14, "line": "Our colors will fade eventually\"" },
-  { "t": 18, "line": "So, if our time is runnin' out" },
-  { "t": 21, "line": "Day after day" },
-  { "t": 23, "line": "We'll make the mundane our masterpiece" },
-  { "t": 27, "line": "Oh my, my" },
-  { "t": 29, "line": "Oh my, my love" },
-  { "t": 32, "line": "I take one look at you" },
-  { "t": 33, "line": "You're takin' me out of the ordinary" },
-  { "t": 38, "line": "I want you layin' me down 'til we're dead and buried" },
-  { "t": 42, "line": "On the edge of your knife, stayin' drunk on your vine" },
-  { "t": 47, "line": "The angels up in the clouds are jealous knowin' we found" },
-  { "t": 51, "line": "Somethin' so out of the ordinary" },
-  { "t": 55, "line": "You got me kissin' the ground of your sanctuary" },
-  { "t": 60, "line": "Shatter me with your touch, oh Lord, return me to dust" },
-  { "t": 64, "line": "The angels up in the clouds are jealous knowin' we found" },
-  { "t": 70, "line": "Music...." },
-  { "t": 84, "line": "Sanu ek pal chain na aave" },
-  { "t": 87, "line": "Sanu ek pal chain na aave" },
-  { "t": 90, "line": "Sajna tere bina.." },
-  { "t": 94, "line": "Sajna tere bina.." },
-  { "t": 97, "line": "Dil jaane kyun ghabraave" },
-  { "t": 101, "line": "Dil jaane kyun ghabraave" },
-  { "t": 104, "line": "Sajna tere bina." },
-  { "t": 107, "line": "Sajna tere bina." },
-  { "t": 111, "line": "Sanu ek pal chain na aave" },
-  { "t": 115, "line": "Sanu ek pal chain na aave" },
-  { "t": 117, "line": "Sajna tere bina." },
-  { "t": 121, "line": "Sajna tere bina." },
-  { "t": 124, "line": "Music..." },
-  { "t": 131, "line": "Alag tujhme asar kuch hai" },
-  { "t": 135, "line": "Ke dikhta nahi magar kuch hai" },
-  { "t": 140, "line": "Fidaa hoon main toh ek nazar bas" },
-  { "t": 144, "line": "Ek nazar bas, ek nazar takk ke" },
-  { "t": 150, "line": "Lage bhi toh ye aur kidhar ab" },
-  { "t": 154, "line": "Aur kidhar dil sang tere lagg ke" },
-  { "t": 159, "line": "Sahi woh bhi lage mujhko" },
-  { "t": 164, "line": "Galat tujh mein agar kuch hai" },
-  { "t": 169, "line": "Alag tujhme asar kuch hai" },
-  { "t": 175, "line": "Tum se kiran dhoop ki" },
-  { "t": 180, "line": "Tum se siyaah raat hai" },
-  { "t": 185, "line": "Tum bin main bin baat ka" },
-  { "t": 190, "line": "Tum ho tabhi kuch baat hai" },
-  { "t": 195, "line": "Tum se kiran dhoop ki" },
-  { "t": 198, "line": "Tum se siyaah raat hai" },
-  { "t": 204, "line": "Tum bin main bin baat ka" },
-  { "t": 209, "line": "Tum ho tabhi kuch baat hai" },
-  { "t": 215, "line": "Music..." },
-  { "t": 226, "line": "Teri yeh sohbat huyi" },
-  { "t": 229, "line": "Mujhe naseeb hai jab se" },
-  { "t": 235, "line": "Thoda toh behtar khuda kasam" },
-  { "t": 240, "line": "Hua hoon main mujhse" },
-  { "t": 244, "line": "Hai tu hi tu tassavur mein" },
-  { "t": 248, "line": "Hai tu hi tu tassavur mein" },
-  { "t": 253, "line": "Kahan apni khabar kuch hai" },
-  { "t": 258, "line": "Alag tujhme asar kuch hai" },
-  { "t": 264, "line": "Tum se kiran dhoop ki" },
-  { "t": 269, "line": "Tum se siyaah raat hai" },
-  { "t": 274, "line": "Tum bin main bin baat ka" },
-  { "t": 279, "line": "Tum ho tabhi kuch baat hai" }
-]
+[{"t":0,"line":"♡"},{"t":8,"line":"They say, \"The holy water's watered down"},{"t":12,"line":"And this town's lost its faith"},{"t":14,"line":"Our colors will fade eventually\""},{"t":18,"line":"So, if our time is runnin' out"},{"t":21,"line":"Day after day"},{"t":23,"line":"We'll make the mundane our masterpiece"},{"t":27,"line":"Oh my, my"},{"t":29,"line":"Oh my, my love"},{"t":32,"line":"I take one look at you"},{"t":33,"line":"You're takin' me out of the ordinary"},{"t":38,"line":"I want you layin' me down 'til we're dead and buried"},{"t":42,"line":"On the edge of your knife, stayin' drunk on your vine"},{"t":47,"line":"The angels up in the clouds are jealous knowin' we found"},{"t":51,"line":"Somethin' so out of the ordinary"},{"t":55,"line":"You got me kissin' the ground of your sanctuary"},{"t":60,"line":"Shatter me with your touch, oh Lord, return me to dust"},{"t":64,"line":"The angels up in the clouds are jealous knowin' we found"},{"t":70,"line":"Hopeless hallelujah"},{"t":74,"line":"On this side of Heaven's gate"},{"t":79,"line":"Oh, my life, how do ya"},{"t":83,"line":"Breathe and take my breath away?"},{"t":88,"line":"At your altar, I will pray"},{"t":90,"line":"You're the sculptor, I'm the clay"},{"t":93,"line":"Oh my, my"},{"t":94,"line":"You're takin' me out of the ordinary"},{"t":98,"line":"I want you layin' me down 'til we're dead and buried"},{"t":102,"line":"On the edge of your knife, stayin' drunk on your vine"},{"t":107,"line":"The angels up in the clouds are jealous knowin' we found"},{"t":112,"line":"Somethin' so out (Out) of the ordinary (Ordinary)"},{"t":115,"line":"You got me kissin' the ground (Ground) of your sanctuary (Sanctuary)"},{"t":119,"line":"Shatter me with your touch, oh Lord, return me to dust"},{"t":125,"line":"The angels up in the clouds are jealous knowin' we found"},{"t":130,"line":"Somethin' so heavenly, higher than ecstasy"},{"t":134,"line":"Whenever you're next to me, oh my, my"},{"t":138,"line":"World was in black and white until I saw your light"},{"t":142,"line":"I thought you had to die to find"},{"t":146,"line":"Somethin' so out of the ordinary"},{"t":150,"line":"I want you layin' me down 'til we're dead and buried"},{"t":153,"line":"On the edge of your knife, stayin' drunk on your vine"},{"t":159,"line":"The angels up in the clouds are jealous knowin' we found"},{"t":163,"line":"Somethin' so out (Out) of the ordinary"},{"t":167,"line":"You got me kissin' the ground (Ground) of your sanctuary (Sanctuary)"},{"t":171,"line":"Shatter me with your touch, oh Lord, return me to dust"},{"t":176,"line":"The angels up in the clouds are jealous knowin' we found"}]
 </script>
-<script id="audio-src" type="application/json">"final.mp3"</script>
+
+<script id="audio-src" type="application/json">"Ordinary.mp3"</script>
 
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -209,24 +105,11 @@ const PHOTOS    = JSON.parse(document.getElementById('photo-data').textContent);
 const LYRICS    = JSON.parse(document.getElementById('lyrics-data').textContent);
 const AUDIO_SRC = JSON.parse(document.getElementById('audio-src').textContent);
 const IS_MOB    = window.innerWidth < 768;
-const SPHERE_COUNT = PHOTOS.length;
+
+// Total sphere positions = exactly PHOTOS.length so every photo appears once
+const SPHERE_COUNT = PHOTOS.length; // 62
 
 document.getElementById('counter').textContent = `${PHOTOS.length} photographs · memory planet`;
-
-// ── HEART CURSOR TRAIL ─────────────────────────────
-let heartThrottle = 0;
-document.addEventListener('mousemove', e => {
-  const now = Date.now();
-  if (now - heartThrottle < 80) return;
-  heartThrottle = now;
-  const h = document.createElement('div');
-  h.className = 'heart-trail';
-  h.textContent = '♡';
-  h.style.left = e.clientX + 'px';
-  h.style.top = e.clientY + 'px';
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 1200);
-});
 
 // ── LYRICS ──────────────────────────────────────
 const elPrev=document.getElementById('lyric-prev'),elCur=document.getElementById('lyric-current'),
@@ -243,7 +126,7 @@ function syncLyrics(t){
   elCur.classList.add('flash');elBar.classList.add('active');
 }
 
-// ── AUDIO ─────────────────────────────────────────
+// ── AUDIO  (loop on end) ─────────────────────────
 const audio=new Audio(AUDIO_SRC);
 audio.preload='auto';
 audio.loop=true;
@@ -259,123 +142,6 @@ musicBtn.addEventListener('click',()=>{
   if(audio.paused){audio.play();musicBtn.classList.remove('paused');musicLabel.textContent='Playing';}
   else{audio.pause();musicBtn.classList.add('paused');musicLabel.textContent='Paused';}
 });
-
-// ── LAST STAR MESSAGE ─────────────────────────────
-let lastStarShown = false;
-const lastStarMsg = document.getElementById('last-star-msg');
-function checkLastStar(t, dur) {
-  if (!lastStarShown && dur > 0 && (dur - t) < 18 && t > 10) {
-    lastStarShown = true;
-    fireEpicLastStar();
-  }
-}
-function fireEpicLastStar() {
-  window._fireLastStar = true;
-  setTimeout(() => {
-    lastStarMsg.classList.add('visible');
-    setTimeout(() => {
-      lastStarMsg.style.opacity = '0';
-      lastStarMsg.style.transition = 'opacity 3s ease';
-      // Reset so it fires again on the next loop
-      setTimeout(() => {
-        lastStarMsg.classList.remove('visible');
-        lastStarMsg.style.opacity = '';
-        lastStarMsg.style.transition = '';
-        lastStarShown = false;
-      }, 3200);
-    }, 5000);
-  }, 3800);
-}
-
-// ── SKY PULSE ─────────────────────────────────────
-const skyPulse = document.getElementById('sky-pulse');
-function triggerSkyPulse() {
-  skyPulse.style.opacity = '1';
-  gsap.to(skyPulse, { opacity: 0, duration: 1.8, ease: 'power2.out' });
-}
-
-// ── PHOTO CLICK RIPPLE ────────────────────────────
-function spawnRipple(x, y) {
-  const r = document.createElement('div');
-  r.className = 'ripple-ring';
-  r.style.left = x + 'px';
-  r.style.top = y + 'px';
-  r.style.width = '80px';
-  r.style.height = '80px';
-  document.body.appendChild(r);
-  // Second larger ring with delay
-  setTimeout(() => {
-    const r2 = document.createElement('div');
-    r2.className = 'ripple-ring';
-    r2.style.left = x + 'px';
-    r2.style.top = y + 'px';
-    r2.style.width = '80px';
-    r2.style.height = '80px';
-    r2.style.animationDelay = '0.15s';
-    r2.style.borderColor = 'rgba(150,140,220,0.5)';
-    document.body.appendChild(r2);
-    setTimeout(() => r2.remove(), 1500);
-  }, 100);
-  setTimeout(() => r.remove(), 1500);
-}
-
-// ── CONSTELLATION CANVAS ──────────────────────────
-const conCanvas = document.getElementById('constellation-canvas');
-const conCtx = conCanvas.getContext('2d');
-let conW, conH;
-let constellationLines = []; // {x1,y1,x2,y2,alpha,life}
-let projectedPositions = []; // screen coords of photo meshes
-
-function resizeConCanvas() {
-  conW = conCanvas.width = window.innerWidth;
-  conH = conCanvas.height = window.innerHeight;
-}
-resizeConCanvas();
-
-function updateConstellations() {
-  conCtx.clearRect(0, 0, conW, conH);
-  if (projectedPositions.length < 2) return;
-
-  // Draw lines between nearby projected positions
-  const now = Date.now();
-  // Build dynamic lines each frame based on current projected positions
-  // Only connect the closest pairs (to avoid clutter)
-  const pts = projectedPositions;
-  const drawn = new Set();
-
-  for (let i = 0; i < pts.length; i++) {
-    let closest = -1, minDist = Infinity;
-    for (let j = 0; j < pts.length; j++) {
-      if (i === j) continue;
-      const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-      const d = Math.sqrt(dx*dx + dy*dy);
-      const key = Math.min(i,j) + '_' + Math.max(i,j);
-      if (d < 160 && d > 20 && !drawn.has(key)) {
-        if (d < minDist) { minDist = d; closest = j; }
-      }
-    }
-    if (closest >= 0) {
-      const key = Math.min(i,closest) + '_' + Math.max(i,closest);
-      drawn.add(key);
-      const alpha = (1 - minDist / 160) * 0.28;
-      const grd = conCtx.createLinearGradient(pts[i].x, pts[i].y, pts[closest].x, pts[closest].y);
-      grd.addColorStop(0, `rgba(232,180,184,${alpha})`);
-      grd.addColorStop(0.5, `rgba(200,185,240,${alpha * 1.3})`);
-      grd.addColorStop(1, `rgba(232,180,184,${alpha})`);
-      conCtx.beginPath();
-      conCtx.moveTo(pts[i].x, pts[i].y);
-      conCtx.lineTo(pts[closest].x, pts[closest].y);
-      conCtx.strokeStyle = grd;
-      conCtx.lineWidth = 0.7;
-      conCtx.stroke();
-      // tiny star node at each endpoint
-      conCtx.beginPath();
-      conCtx.arc(pts[i].x, pts[i].y, 1.2, 0, Math.PI * 2);
-      conCtx.fillStyle = `rgba(232,180,184,${alpha * 2})`;
-      conCtx.fill();
-    }
-  }
-}
 
 // ── SCENE GLOBALS ─────────────────────────────────
 let scene,camera,renderer,controls,clock;
@@ -532,36 +298,26 @@ function buildShooterPool(){
       fragmentShader:`varying float vT;uniform float uAlpha;uniform vec3 uColor;void main(){float a=(1.-vT)*uAlpha;if(a<.005)discard;vec3 c=mix(uColor,vec3(1.,1.,1.),1.-vT);gl_FragColor=vec4(c,a);}`,
       transparent:true,depthWrite:false,blending:THREE.AdditiveBlending});
     const line=new THREE.Line(geo,mat);line.frustumCulled=false;scene.add(line);
-    SHOOTERS.push({line,geo,segPts,active:false,progress:0,speed:0,start:new THREE.Vector3(),end:new THREE.Vector3(),isEpic:false});
+    SHOOTERS.push({line,geo,segPts,active:false,progress:0,speed:0,start:new THREE.Vector3(),end:new THREE.Vector3()});
   }
 }
-
-function spawnShooter(epic=false){
+function spawnShooter(){
   const s=SHOOTERS.find(s=>!s.active);if(!s)return;
-  const dist=epic?4500:3000+Math.random()*3500;
-  const ph=Math.random()*Math.PI,th=Math.random()*Math.PI*2;
+  const dist=3000+Math.random()*3500,ph=Math.random()*Math.PI,th=Math.random()*Math.PI*2;
   s.start.set(dist*Math.sin(ph)*Math.cos(th),dist*(.1+Math.random()*.7),dist*Math.sin(ph)*Math.sin(th));
-  const dir=new THREE.Vector3(
-    epic?-(Math.random()*.5+.5):(Math.random()-.5)*2,
-    epic?-0.15:-.3-Math.random()*.5,
-    epic?(Math.random()-.5)*.4:(Math.random()-.5)*2
-  ).normalize();
-  const length=epic?5500:900+Math.random()*1600;
-  s.end.copy(s.start).addScaledVector(dir,length);
-  s.isEpic=epic;
-  if(epic){s.line.material.uniforms.uColor.value.copy(new THREE.Color(1,.92,.96));}
-  else{const roll=Math.random();s.line.material.uniforms.uColor.value.copy(roll<.15?new THREE.Color(1,.78,.84):roll<.30?new THREE.Color(.80,.90,1):new THREE.Color(1,.98,.95));}
-  s.speed=epic?0.28:.7+Math.random()*.9;s.progress=0;s.active=true;
+  const dir=new THREE.Vector3((Math.random()-.5)*2,-.3-Math.random()*.5,(Math.random()-.5)*2).normalize();
+  s.end.copy(s.start).addScaledVector(dir,900+Math.random()*1600);
+  const roll=Math.random();
+  s.line.material.uniforms.uColor.value.copy(roll<.15?new THREE.Color(1,.78,.84):roll<.30?new THREE.Color(.80,.90,1):new THREE.Color(1,.98,.95));
+  s.speed=.7+Math.random()*.9;s.progress=0;s.active=true;
 }
-
 function updateShooters(dt){
   SHOOTERS.forEach(s=>{
     if(!s.active)return;
     s.progress+=dt*s.speed;
-    const endP=s.isEpic?1.6:1.4;
-    if(s.progress>=endP){s.active=false;s.line.material.uniforms.uAlpha.value=0;return;}
+    if(s.progress>=1.4){s.active=false;s.line.material.uniforms.uAlpha.value=0;return;}
     const p=Math.min(s.progress,1.0);
-    const tailLen=s.isEpic?Math.min(p,.55):Math.min(p,.38);
+    const tailLen=Math.min(p,.38);
     const tailStart=new THREE.Vector3().lerpVectors(s.start,s.end,Math.max(0,p-tailLen));
     const head=new THREE.Vector3().lerpVectors(s.start,s.end,p);
     const segs=s.segPts.length/3;
@@ -570,12 +326,11 @@ function updateShooters(dt){
       s.segPts[i*3]=pt.x;s.segPts[i*3+1]=pt.y;s.segPts[i*3+2]=pt.z;
     }
     s.geo.attributes.position.needsUpdate=true;
-    const baseAlpha=s.isEpic?1.2:0.92;
-    s.line.material.uniforms.uAlpha.value=(s.progress<1.0?1.0:1.0-(s.progress-1.0)/(endP-1.0))*baseAlpha;
+    s.line.material.uniforms.uAlpha.value=(s.progress<1.0?1.0:1.0-(s.progress-1.0)/.4)*.92;
   });
 }
 
-// ── FOCUS PHOTO ───────────────────────────────────
+// ── FOCUS PHOTO — always a NEW one ───────────────
 let lastFocusIdx = -1;
 function getNextFocusIdx(){
   if(meshes.length===0) return 0;
@@ -585,10 +340,6 @@ function getNextFocusIdx(){
   lastFocusIdx=idx;
   return idx;
 }
-
-// ── RAYCASTER (photo click) ───────────────────────
-const raycaster = new THREE.Raycaster();
-const mouse2d = new THREE.Vector2();
 
 // ── MAIN BUILD ────────────────────────────────────
 let starPts,nebulaGrp,glowMesh,ringMesh,dustPts;
@@ -618,22 +369,6 @@ function buildScene(){
   dustPts=buildDust(820,1020,.38);
   buildShooterPool();
   nextShoot=Date.now()+1200+Math.random()*1800;
-
-  // Photo click → heartbeat pulse
-  renderer.domElement.addEventListener('click', e => {
-    mouse2d.x = (e.clientX / window.innerWidth) * 2 - 1;
-    mouse2d.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    raycaster.setFromCamera(mouse2d, camera);
-    const hits = raycaster.intersectObjects(meshes);
-    if (hits.length > 0) {
-      triggerSkyPulse();
-      spawnRipple(e.clientX, e.clientY);
-      // bloom the stars briefly
-      if (starPts) {
-        gsap.to(starPts.material.uniforms.uDPR, { value: Math.min(devicePixelRatio,2) * 1.7, duration: 0.3, yoyo: true, repeat: 1 });
-      }
-    }
-  });
 
   // ── PHOTO SPHERE ──────────────────────────────
   const planeGeo=new THREE.PlaneGeometry(100,148);
@@ -682,23 +417,6 @@ function buildScene(){
   });
 }
 
-// ── PROJECT MESHES TO SCREEN (for constellations) ─
-const _v3 = new THREE.Vector3();
-function projectMeshes() {
-  if (!camera || meshes.length === 0) return;
-  projectedPositions = [];
-  for (let i = 0; i < meshes.length; i++) {
-    meshes[i].getWorldPosition(_v3);
-    const pos = _v3.clone().project(camera);
-    const x = (pos.x * 0.5 + 0.5) * conW;
-    const y = (-pos.y * 0.5 + 0.5) * conH;
-    // Only include if in front of camera and on screen
-    if (pos.z < 1 && x > -50 && x < conW+50 && y > -50 && y < conH+50) {
-      projectedPositions.push({ x, y });
-    }
-  }
-}
-
 // ── RENDER LOOP ───────────────────────────────────
 function loop(){
   requestAnimationFrame(loop);
@@ -711,25 +429,17 @@ function loop(){
   if(nebulaGrp){nebulaGrp.rotation.y=t*.006;nebulaGrp.rotation.x=Math.sin(t*.004)*.04;}
   const now=Date.now();
   if(now>=nextShoot){spawnShooter();nextShoot=now+3500+Math.random()*4500;}
-  // Epic last star trigger
-  if(window._fireLastStar){window._fireLastStar=false;spawnShooter(true);}
   updateShooters(dt);
-
-  // Update constellations
-  projectMeshes();
-  updateConstellations();
-
   renderer.render(scene,camera);
   if(!audio.paused&&audio.duration){
     const ct=audio.currentTime,dur=audio.duration;
     progBar.style.width=`${(ct/dur)*100}%`;
     timeEl.textContent=`${fmt(ct)} / ${fmt(dur)}`;
     syncLyrics(ct);
-    checkLastStar(ct,dur);
   }
 }
 
-// ── EXPLORE ───────────────────────────────────────
+// ── EXPLORE (always new photo) ────────────────────
 function explore(){
   if(busy||meshes.length===0)return;
   busy=true;controls.enabled=false;
@@ -758,7 +468,6 @@ window.addEventListener('resize',()=>{
   camera.aspect=W/H;camera.fov=W<768?70:58;camera.updateProjectionMatrix();
   renderer.setSize(W,H);
   if(starPts)starPts.material.uniforms.uDPR.value=Math.min(devicePixelRatio,2);
-  resizeConCanvas();
 });
 
 // ── SPLASH ────────────────────────────────────────
@@ -768,19 +477,7 @@ document.getElementById('start-btn').addEventListener('click',()=>{
   buildScene();
   audio.play().catch(()=>{musicBtn.classList.add('paused');musicLabel.textContent='Tap to play';});
 });
-const toggleFullScreen = () => {
-  const doc = window.document;
-  const docEl = doc.documentElement;
 
-  const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-  
-  if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-    requestFullScreen.call(docEl);
-  }
-};
-
-// This MUST be attached to an event listener
-window.addEventListener('click', toggleFullScreen);
 </script>
 </body>
 </html>
