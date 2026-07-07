@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,11 +36,10 @@
     #lyric-next{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(0.78rem,1.35vw,1rem);color:rgba(245,240,232,0.16);letter-spacing:0.1em;margin-top:0.6rem;text-align:center;padding:0 3rem;}
     #lyric-bar{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin-top:0.85rem;opacity:0;transition:width 1.3s cubic-bezier(0.22,1,0.36,1),opacity 0.9s ease;}
     #lyric-bar.active{width:3.2rem;opacity:1;}
-    #controls{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:0.75rem;pointer-events:all;white-space:nowrap;opacity:0;animation:fadeUp 2s 1.4s ease forwards;flex-wrap:wrap;justify-content:center;}
+    #controls{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:0.75rem;pointer-events:all;white-space:nowrap;opacity:0;animation:fadeUp 2s 1.4s ease forwards;}
     .btn{background:var(--faint);border:1px solid var(--border);color:var(--ink);font-family:'Inconsolata',monospace;font-size:clamp(0.5rem,0.85vw,0.62rem);letter-spacing:0.2em;text-transform:uppercase;padding:0.55rem 1.3rem;border-radius:50px;cursor:pointer;transition:background 0.3s,border-color 0.3s,transform 0.15s;backdrop-filter:blur(16px);}
     .btn:hover{background:rgba(245,240,232,0.1);border-color:rgba(245,240,232,0.38);transform:scale(1.05);}
     .btn:active{transform:scale(0.96);}
-    .btn:focus-visible{outline:1px solid var(--accent);outline-offset:2px;}
     #music-btn{display:flex;align-items:center;gap:0.5rem;background:var(--acc-faint);border-color:var(--acc-border);color:var(--accent);}
     #music-btn:hover{background:rgba(232,180,184,0.22);}
     #music-btn .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:pulse 1.7s infinite ease-in-out;}
@@ -52,7 +52,7 @@
     #splash{position:fixed;inset:0;z-index:50;background:#03020a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity 1.4s ease;}
     #splash.out{opacity:0;pointer-events:none;}
     #splash-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(2.4rem,7vw,4.5rem);letter-spacing:0.12em;color:var(--ink);text-align:center;animation:fadeUp 2s 0.3s ease both;}
-    #splash-sub{font-size:0.58rem;letter-spacing:0.4em;color:var(--muted);text-transform:uppercase;text-align:center;line-height:2;animation:fadeUp 2s 0.7s ease both;padding:0 1.5rem;}
+    #splash-sub{font-size:0.58rem;letter-spacing:0.4em;color:var(--muted);text-transform:uppercase;text-align:center;line-height:2;animation:fadeUp 2s 0.7s ease both;}
     #splash-heart{font-size:1.6rem;color:var(--accent);animation:fadeUp 2s 1s ease both,heartbeat 2.6s 2s infinite ease-in-out;line-height:1;}
     #start-btn{background:var(--acc-faint);border:1px solid var(--acc-border);color:var(--accent);font-family:'Inconsolata',monospace;font-size:0.66rem;letter-spacing:0.32em;text-transform:uppercase;padding:0.85rem 3rem;border-radius:50px;cursor:pointer;transition:all 0.3s;animation:fadeUp 2s 1.3s ease both;}
     #start-btn:hover{background:rgba(232,180,184,0.26);transform:scale(1.05);}
@@ -66,6 +66,8 @@
     .ripple-ring{position:fixed;pointer-events:none;z-index:20;border-radius:50%;border:1px solid rgba(232,180,184,0.7);transform:translate(-50%,-50%) scale(0);animation:rippleOut 1.2s ease-out forwards;}
     @keyframes rippleOut{0%{transform:translate(-50%,-50%) scale(0);opacity:0.9;}100%{transform:translate(-50%,-50%) scale(4);opacity:0;}}
 
+
+
     /* ── LAST STAR MESSAGE ── */
     #last-star-msg{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:30;pointer-events:none;text-align:center;opacity:0;transition:opacity 2.5s ease;}
     #last-star-msg.visible{opacity:1;}
@@ -75,35 +77,15 @@
     /* ── CONSTELLATION CANVAS ── */
     #constellation-canvas{position:fixed;inset:0;z-index:3;pointer-events:none;}
 
-    /* ── PHOTO CAPTION ── */
-    #photo-caption{position:fixed;left:50%;bottom:clamp(9.5rem,20vh,13rem);transform:translateX(-50%) translateY(10px);z-index:12;pointer-events:none;opacity:0;transition:opacity 1s ease,transform 1s ease;text-align:center;max-width:min(90vw,26rem);}
-    #photo-caption.visible{opacity:1;transform:translateX(-50%) translateY(0);}
-    #photo-caption p{font-family:'Dancing Script',cursive;font-size:clamp(1.1rem,2.4vw,1.6rem);color:var(--accent);text-shadow:0 0 30px rgba(232,180,184,0.5);letter-spacing:0.02em;}
-
-    /* ── LOADER ── */
-    #loader-wrap{position:absolute;bottom:2.4rem;left:2.4rem;display:flex;align-items:center;gap:0.6rem;opacity:0;animation:fadeUp 2s 1.2s ease forwards;}
-    #loader-wrap .loader-track{width:64px;height:1px;background:rgba(245,240,232,0.1);position:relative;overflow:hidden;}
-    #loader-wrap .loader-fill{position:absolute;left:0;top:0;height:100%;width:0%;background:linear-gradient(90deg,var(--accent),rgba(232,180,184,0.3));transition:width 0.4s ease;}
-    #loader-wrap span{font-size:0.5rem;letter-spacing:0.25em;color:var(--muted);text-transform:uppercase;}
-    #loader-wrap.done{opacity:0;transition:opacity 1.2s ease;}
-
-    /* ── SOUND HINT (shown if autoplay is blocked) ── */
-    #sound-hint{position:fixed;top:1.2rem;left:50%;transform:translateX(-50%);z-index:40;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);background:var(--acc-faint);border:1px solid var(--acc-border);padding:0.5rem 1.1rem;border-radius:50px;opacity:0;pointer-events:none;transition:opacity .6s ease;}
-    #sound-hint.show{opacity:1;}
-
     @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
     @keyframes lyricIn{0%{opacity:0;transform:translateY(12px) scale(0.97)}55%{opacity:1;transform:translateY(-3px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
     @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(0.5);opacity:0.3}}
     @keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.2)}28%{transform:scale(1)}42%{transform:scale(1.13)}56%{transform:scale(1)}}
-    @media(max-width:640px){#wordmark{top:1.2rem;left:1.4rem}#counter{top:1.3rem;right:1.4rem}#controls{gap:0.5rem}.btn{padding:0.45rem 0.9rem}#loader-wrap{left:1.4rem;bottom:1.4rem}}
-    @media (prefers-reduced-motion: reduce){
-      .heart-trail,#last-star-msg,#photo-caption,#sky-pulse,.ripple-ring{animation:none!important;transition:none!important;}
-    }
+    @media(max-width:640px){#wordmark{top:1.2rem;left:1.4rem}#counter{top:1.3rem;right:1.4rem}#controls{gap:0.5rem;flex-wrap:wrap;justify-content:center}.btn{padding:0.45rem 0.9rem}}
   </style>
 </head>
 <body>
 <div id="grain"></div>
-<div id="sound-hint">tap anywhere for sound</div>
 
 <!-- Last Star Message -->
 <div id="last-star-msg">
@@ -130,14 +112,12 @@
 <div id="hud">
   <div id="wordmark"><h1>Edipverse</h1><span>Our Universe · love surviving beyond stars</span></div>
   <div id="counter"></div>
-  <div id="photo-caption"><p></p></div>
   <div id="lyrics-wrap">
     <div id="lyric-prev"></div>
     <div id="lyric-current">♡</div>
     <div id="lyric-bar"></div>
     <div id="lyric-next"></div>
   </div>
-  <div id="loader-wrap"><div class="loader-track"><div class="loader-fill" id="loader-fill"></div></div><span id="loader-label">loading memories</span></div>
   <div id="controls">
     <button class="btn" id="explore-btn">Focus Photo</button>
     <button class="btn" id="orbit-btn">Orbit View</button>
@@ -147,18 +127,10 @@
 <div id="time-display">0:00 / 0:00</div>
 <div id="progress-wrap"><div id="progress-bar"></div></div>
 
-<!-- ══════════════════════════════════════
-  ★ PHOTOS — put your image filenames here.
-    Keep them in the same folder as this
-    HTML file (or use full URLs).
-══════════════════════════════════════ -->
 <script id="photo-data" type="application/json">
-["file_1.png","file_2.png","file_3.png","file_4.png","file_5.png","file_6.png","file_7.png","file_8.png","file_9.png","file_10.png","file_11.png","file_12.png","file_13.png","file_14.png","file_15.png","file_16.png","file_17.png","file_18.png","file_19.png","file_20.png","file_21.png","file_22.png","file_23.png","file_24.png","file_25.png","file_26.png","file_27.png","file_28.png","file_29.png","file_30.png","file_31.png","file_32.png","face.jpeg","file_33.png","file_34.png","file_35.png","file_36.png","file_37.png","file_38.png","file_39.png","file_40.png","WhatsApp Image 2026-07-07 at 10.13.39 AM.jpeg","file_41.png","file_42.png","file_43.png","file_44.png","file_45.png","file_46.png","file_47.png","file_48.png","file_49.png","file_50.png","file_51.png","file_52.png","file_53.png","file_54.png","file_55.png","file_56.png","file_57.png","file_58.png","file_59.png","file_60.png","file_61.png","file_62.png","file_61.jpeg","black.jpeg","face.jpeg"]
+["file_1.png","file_2.png","file_3.png","file_4.png","file_5.png","file_6.png","file_7.png","file_8.png","file_9.png","file_10.png","file_11.png","file_12.png","file_13.png","file_14.png","file_15.png","file_16.png","file_17.png","file_18.png","file_19.png","file_20.png","file_21.png","file_22.png","file_23.png","file_24.png","file_25.png","file_26.png","file_27.png","file_28.png","file_29.png","file_30.png","file_31.png","file_32.png","face.jpeg","file_33.png","file_34.png","file_35.png","file_36.png","file_37.png","file_38.png","file_39.png","file_40.png","WhatsApp Image 2026-07-07 at 10.13.39 AM.jpeg","file_41.png","file_42.png","file_43.png","file_44.png","file_45.png","file_46.png","file_47.png","file_48.png","file_49.png","file_50.png","file_51.png","file_52.png","file_53.png","file_54.png","file_55.png","file_56.png","file_57.png","file_58.png","file_59.png","file_60.png","file_61.png","file_62.png","file_61.jpeg","WhatsApp Image 2026-07-07 at 10.14.17 AM.jpeg"]
 </script>
 
-<!-- ══════════════════════════════════════
-  ★ LYRICS — t is the timestamp in seconds
-══════════════════════════════════════ -->
 <script id="lyrics-data" type="application/json">
 [
   { "t": 0, "line": "♡" },
@@ -233,23 +205,12 @@
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 
-// ── Guard: never let a data error silently kill the whole page ──
-let PHOTOS = [], LYRICS = [], AUDIO_SRC = 'final.mp3';
-try {
-  PHOTOS = JSON.parse(document.getElementById('photo-data').textContent);
-  LYRICS = JSON.parse(document.getElementById('lyrics-data').textContent);
-  AUDIO_SRC = JSON.parse(document.getElementById('audio-src').textContent);
-} catch (err) {
-  console.error('Could not parse photo/lyrics/audio data — check for stray trailing commas in the JSON blocks:', err);
-}
-
-const IS_MOB = window.innerWidth < 768;
-const SPHERE_COUNT = Math.max(PHOTOS.length, 1);
+const PHOTOS    = JSON.parse(document.getElementById('photo-data').textContent);
+const LYRICS    = JSON.parse(document.getElementById('lyrics-data').textContent);
+const AUDIO_SRC = JSON.parse(document.getElementById('audio-src').textContent);
+const IS_MOB    = window.innerWidth < 768;
+const SPHERE_COUNT = PHOTOS.length;
 
 document.getElementById('counter').textContent = `${PHOTOS.length} photographs · memory planet`;
 
@@ -290,7 +251,6 @@ audio.loop=true;
 
 const progBar=document.getElementById('progress-bar'),timeEl=document.getElementById('time-display');
 const musicBtn=document.getElementById('music-btn'),musicLabel=document.getElementById('music-label');
-const soundHint=document.getElementById('sound-hint');
 const fmt=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
 
 audio.addEventListener('seeked',()=>{ if(audio.currentTime<1) lyricIdx=-1; });
@@ -300,27 +260,6 @@ musicBtn.addEventListener('click',()=>{
   if(audio.paused){audio.play();musicBtn.classList.remove('paused');musicLabel.textContent='Playing';}
   else{audio.pause();musicBtn.classList.add('paused');musicLabel.textContent='Paused';}
 });
-
-// If autoplay was blocked by the browser, show a gentle hint and unlock on first tap.
-function tryPlayAudio(){
-  const p = audio.play();
-  if (p && typeof p.catch === 'function') {
-    p.catch(()=>{
-      musicBtn.classList.add('paused');
-      musicLabel.textContent='Tap to play';
-      soundHint.classList.add('show');
-      const unlock=()=>{
-        audio.play().then(()=>{
-          musicBtn.classList.remove('paused');
-          musicLabel.textContent='Playing';
-          soundHint.classList.remove('show');
-        }).catch(()=>{});
-        window.removeEventListener('pointerdown',unlock);
-      };
-      window.addEventListener('pointerdown',unlock,{once:true});
-    });
-  }
-}
 
 // ── LAST STAR MESSAGE ─────────────────────────────
 let lastStarShown = false;
@@ -338,6 +277,7 @@ function fireEpicLastStar() {
     setTimeout(() => {
       lastStarMsg.style.opacity = '0';
       lastStarMsg.style.transition = 'opacity 3s ease';
+      // Reset so it fires again on the next loop
       setTimeout(() => {
         lastStarMsg.classList.remove('visible');
         lastStarMsg.style.opacity = '';
@@ -355,18 +295,6 @@ function triggerSkyPulse() {
   gsap.to(skyPulse, { opacity: 0, duration: 1.8, ease: 'power2.out' });
 }
 
-// ── PHOTO CAPTION ─────────────────────────────────
-const CAPTIONS = ["that day","still smiling","our place","a quiet moment","you, again","frozen in gold","the good kind of loud","before we knew","one of my favorites","just us","a little universe of its own","light caught you perfectly","this one lives in me","softest kind of memory","the way you looked at me"];
-const captionEl = document.getElementById('photo-caption');
-const captionP = captionEl.querySelector('p');
-let captionHideTimer = null;
-function showCaption(){
-  clearTimeout(captionHideTimer);
-  captionP.textContent = CAPTIONS[Math.floor(Math.random()*CAPTIONS.length)];
-  captionEl.classList.add('visible');
-  captionHideTimer = setTimeout(()=>captionEl.classList.remove('visible'), 4200);
-}
-
 // ── PHOTO CLICK RIPPLE ────────────────────────────
 function spawnRipple(x, y) {
   const r = document.createElement('div');
@@ -376,6 +304,7 @@ function spawnRipple(x, y) {
   r.style.width = '80px';
   r.style.height = '80px';
   document.body.appendChild(r);
+  // Second larger ring with delay
   setTimeout(() => {
     const r2 = document.createElement('div');
     r2.className = 'ripple-ring';
@@ -395,17 +324,12 @@ function spawnRipple(x, y) {
 const conCanvas = document.getElementById('constellation-canvas');
 const conCtx = conCanvas.getContext('2d');
 let conW, conH;
-let projectedPositions = [];
+let constellationLines = []; // {x1,y1,x2,y2,alpha,life}
+let projectedPositions = []; // screen coords of photo meshes
 
 function resizeConCanvas() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  conW = window.innerWidth;
-  conH = window.innerHeight;
-  conCanvas.width = conW * dpr;
-  conCanvas.height = conH * dpr;
-  conCanvas.style.width = conW + 'px';
-  conCanvas.style.height = conH + 'px';
-  conCtx.setTransform(dpr,0,0,dpr,0,0);
+  conW = conCanvas.width = window.innerWidth;
+  conH = conCanvas.height = window.innerHeight;
 }
 resizeConCanvas();
 
@@ -413,6 +337,10 @@ function updateConstellations() {
   conCtx.clearRect(0, 0, conW, conH);
   if (projectedPositions.length < 2) return;
 
+  // Draw lines between nearby projected positions
+  const now = Date.now();
+  // Build dynamic lines each frame based on current projected positions
+  // Only connect the closest pairs (to avoid clutter)
   const pts = projectedPositions;
   const drawn = new Set();
 
@@ -441,6 +369,7 @@ function updateConstellations() {
       conCtx.strokeStyle = grd;
       conCtx.lineWidth = 0.7;
       conCtx.stroke();
+      // tiny star node at each endpoint
       conCtx.beginPath();
       conCtx.arc(pts[i].x, pts[i].y, 1.2, 0, Math.PI * 2);
       conCtx.fillStyle = `rgba(232,180,184,${alpha * 2})`;
@@ -450,16 +379,15 @@ function updateConstellations() {
 }
 
 // ── SCENE GLOBALS ─────────────────────────────────
-let scene,camera,renderer,composer,controls,clock;
+let scene,camera,renderer,controls,clock;
 const meshes=[];
-const meshData=[];
 let busy=false,lastT=0,nextShoot=0;
 const SHOOTERS=[];
 const SHOOT_SEGS=40;
 
 // ── STAR FIELD ────────────────────────────────────
 function buildStars(){
-  const N=IS_MOB?1800:3200,pos=new Float32Array(N*3),sz=new Float32Array(N),
+  const N=3200,pos=new Float32Array(N*3),sz=new Float32Array(N),
         ph=new Float32Array(N),sp=new Float32Array(N),col=new Float32Array(N*3);
   const pal=[[1,1,1],[.88,.94,1],[.96,.96,1],[1,.97,.90],[.94,.90,1],[1,.88,.92]];
   const wt=[.38,.22,.18,.12,.06,.04];
@@ -650,7 +578,6 @@ function updateShooters(dt){
 
 // ── FOCUS PHOTO ───────────────────────────────────
 let lastFocusIdx = -1;
-let currentFocusMesh = null;
 function getNextFocusIdx(){
   if(meshes.length===0) return 0;
   if(meshes.length===1) return 0;
@@ -667,10 +594,6 @@ const mouse2d = new THREE.Vector2();
 // ── MAIN BUILD ────────────────────────────────────
 let starPts,nebulaGrp,glowMesh,ringMesh,dustPts;
 
-const loaderFill = document.getElementById('loader-fill');
-const loaderWrap = document.getElementById('loader-wrap');
-const loaderLabel = document.getElementById('loader-label');
-
 function buildScene(){
   clock=new THREE.Clock();
   scene=new THREE.Scene();
@@ -683,39 +606,11 @@ function buildScene(){
   renderer=new THREE.WebGLRenderer({canvas:document.getElementById('three-canvas'),antialias:true,powerPreference:'high-performance'});
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   renderer.setSize(W,H);
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
 
   controls=new OrbitControls(camera,renderer.domElement);
   controls.enableDamping=true;controls.dampingFactor=.06;
   controls.autoRotate=true;controls.autoRotateSpeed=.28;
   controls.enablePan=false;controls.minDistance=250;controls.maxDistance=5500;
-
-  composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-  const bloomPass = new UnrealBloomPass(new THREE.Vector2(W,H), 0.62, 0.85, 0.18);
-  composer.addPass(bloomPass);
-
-  const gradeShader = {
-    uniforms:{ tDiffuse:{value:null}, uVignette:{value:0.62}, uWarm:{value:new THREE.Color(1.04,0.99,0.95)}, uCool:{value:new THREE.Color(0.93,0.96,1.05)} },
-    vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
-    fragmentShader:`
-      uniform sampler2D tDiffuse;uniform float uVignette;uniform vec3 uWarm;uniform vec3 uCool;
-      varying vec2 vUv;
-      void main(){
-        vec4 c = texture2D(tDiffuse, vUv);
-        vec2 uv = vUv - 0.5;
-        float d = length(uv * vec2(1.15,1.0));
-        float vig = smoothstep(0.85, uVignette, d);
-        vec3 tint = mix(uWarm, uCool, smoothstep(0.0,0.75,d));
-        c.rgb *= tint;
-        c.rgb *= (1.0 - vig*0.55);
-        gl_FragColor = c;
-      }`
-  };
-  const gradePass = new ShaderPass(gradeShader);
-  gradePass.renderToScreen = true;
-  composer.addPass(gradePass);
 
   nebulaGrp=buildNebula();
   starPts=buildStars();
@@ -725,6 +620,7 @@ function buildScene(){
   buildShooterPool();
   nextShoot=Date.now()+1200+Math.random()*1800;
 
+  // Photo click → heartbeat pulse
   renderer.domElement.addEventListener('click', e => {
     mouse2d.x = (e.clientX / window.innerWidth) * 2 - 1;
     mouse2d.y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -733,9 +629,7 @@ function buildScene(){
     if (hits.length > 0) {
       triggerSkyPulse();
       spawnRipple(e.clientX, e.clientY);
-      showCaption();
-      const hitMesh = hits[0].object;
-      gsap.to(hitMesh.scale, { x:1.18, y:1.18, z:1.18, duration:0.35, yoyo:true, repeat:1, ease:'power2.out' });
+      // bloom the stars briefly
       if (starPts) {
         gsap.to(starPts.material.uniforms.uDPR, { value: Math.min(devicePixelRatio,2) * 1.7, duration: 0.3, yoyo: true, repeat: 1 });
       }
@@ -744,10 +638,9 @@ function buildScene(){
 
   // ── PHOTO SPHERE ──────────────────────────────
   const planeGeo=new THREE.PlaneGeometry(100,148);
-  const frameGeo=new THREE.PlaneGeometry(112,160);
   const loader=new THREE.TextureLoader();
+  const cache={};
   const uniq=[...new Set(PHOTOS)];
-  const urlToMeshes={};
   let loaded=0;
   const goldenAngle=Math.PI*(3-Math.sqrt(5));
 
@@ -758,79 +651,36 @@ function buildScene(){
     return new THREE.CanvasTexture(c);
   }
 
-  function frameMat(){
-    const c=document.createElement('canvas');c.width=112;c.height=160;
-    const ctx=c.getContext('2d');
-    const grd=ctx.createLinearGradient(0,0,112,160);
-    grd.addColorStop(0,'rgba(232,180,184,0.9)');
-    grd.addColorStop(0.5,'rgba(200,185,240,0.5)');
-    grd.addColorStop(1,'rgba(232,180,184,0.9)');
-    ctx.strokeStyle=grd;ctx.lineWidth=3;ctx.strokeRect(2,2,108,156);
-    const tex=new THREE.CanvasTexture(c);
-    return new THREE.MeshBasicMaterial({map:tex,transparent:true,side:THREE.DoubleSide,depthWrite:false,blending:THREE.AdditiveBlending,opacity:0.85});
+  function buildSphere(){
+    for(let i=0;i<SPHERE_COUNT;i++){
+      const url=PHOTOS[i];
+      const tex=cache[url]||phTex();
+      const tc=tex.clone();tc.needsUpdate=true;tc.colorSpace=THREE.SRGBColorSpace;
+      const iw=tex.image?tex.image.width||1:1,ih=tex.image?tex.image.height||1:1;
+      const ia=iw/ih,fa=100/148;
+      if(ia>fa){const s=fa/ia;tc.repeat.set(s,1);tc.offset.set((1-s)/2,0);}
+      else{const s=ia/fa;tc.repeat.set(1,s);tc.offset.set(0,(1-s)/2);}
+      const mat=new THREE.MeshBasicMaterial({map:tc,side:THREE.DoubleSide,color:0xffffff});
+      const mesh=new THREE.Mesh(planeGeo,mat);
+
+      const y=1-(i/(SPHERE_COUNT-1))*2;
+      const r=Math.sqrt(Math.max(0,1-y*y));
+      const th=goldenAngle*i;
+      mesh.position.set(700*r*Math.cos(th),700*y,700*r*Math.sin(th));
+      mesh.lookAt(0,0,0);mesh.rotateY(Math.PI);
+      scene.add(mesh);meshes.push(mesh);
+    }
+    lastT=clock.getElapsedTime();
+    loop();
   }
-  const sharedFrameMat = frameMat();
 
-  if (SPHERE_COUNT === 0 || PHOTOS.length === 0) {
-    loaderLabel.textContent = 'no photos found — check photo-data';
-  }
-
-  for(let i=0;i<SPHERE_COUNT;i++){
-    const url=PHOTOS[i];
-    const mat=new THREE.MeshBasicMaterial({map:phTex(),side:THREE.DoubleSide,color:0xffffff});
-    const mesh=new THREE.Mesh(planeGeo,mat);
-
-    const y = SPHERE_COUNT>1 ? 1-(i/(SPHERE_COUNT-1))*2 : 0;
-    const r=Math.sqrt(Math.max(0,1-y*y));
-    const th=goldenAngle*i;
-    const px=700*r*Math.cos(th),py=700*y,pz=700*r*Math.sin(th);
-    mesh.position.set(px,py,pz);
-    mesh.lookAt(0,0,0);mesh.rotateY(Math.PI);
-
-    const frame=new THREE.Mesh(frameGeo,sharedFrameMat);
-    frame.position.copy(mesh.position).multiplyScalar(0.988);
-    frame.lookAt(0,0,0);frame.rotateY(Math.PI);
-
-    scene.add(frame);
-    scene.add(mesh);
-    meshes.push(mesh);
-    meshData.push({baseX:px,baseY:py,baseZ:pz,phase:Math.random()*Math.PI*2,speed:0.25+Math.random()*0.35,frame});
-    if(url){ (urlToMeshes[url] ||= []).push(mesh); }
-  }
-  lastT=clock.getElapsedTime();
-  loop();
-
-  if (uniq.length === 0) {
-    loaderWrap.classList.add('done');
-  } else {
-    uniq.forEach(url=>{
-      loader.load(url,
-        tex=>{
-          tex.colorSpace=THREE.SRGBColorSpace;
-          const iw=tex.image?tex.image.width||1:1,ih=tex.image?tex.image.height||1:1;
-          const ia=iw/ih,fa=100/148;
-          if(ia>fa){const s=fa/ia;tex.repeat.set(s,1);tex.offset.set((1-s)/2,0);}
-          else{const s=ia/fa;tex.repeat.set(1,s);tex.offset.set(0,(1-s)/2);}
-          (urlToMeshes[url]||[]).forEach(m=>{ m.material.map=tex; m.material.needsUpdate=true; });
-          loaded++; updateLoaderUI(loaded, uniq.length);
-        },
-        undefined,
-        ()=>{
-          console.warn('Could not load photo:', url);
-          loaded++; updateLoaderUI(loaded, uniq.length);
-        }
-      );
-    });
-  }
-}
-
-function updateLoaderUI(loaded, total){
-  const pct = Math.round((loaded/total)*100);
-  loaderFill.style.width = pct + '%';
-  if(loaded>=total){
-    loaderLabel.textContent='all memories loaded';
-    setTimeout(()=>loaderWrap.classList.add('done'), 900);
-  }
+  uniq.forEach(url=>{
+    loader.load(url,
+      tex=>{tex.colorSpace=THREE.SRGBColorSpace;cache[url]=tex;if(++loaded===uniq.length)buildSphere();},
+      undefined,
+      ()=>{cache[url]=phTex();if(++loaded===uniq.length)buildSphere();}
+    );
+  });
 }
 
 // ── PROJECT MESHES TO SCREEN (for constellations) ─
@@ -843,6 +693,7 @@ function projectMeshes() {
     const pos = _v3.clone().project(camera);
     const x = (pos.x * 0.5 + 0.5) * conW;
     const y = (-pos.y * 0.5 + 0.5) * conH;
+    // Only include if in front of camera and on screen
     if (pos.z < 1 && x > -50 && x < conW+50 && y > -50 && y < conH+50) {
       projectedPositions.push({ x, y });
     }
@@ -861,22 +712,15 @@ function loop(){
   if(nebulaGrp){nebulaGrp.rotation.y=t*.006;nebulaGrp.rotation.x=Math.sin(t*.004)*.04;}
   const now=Date.now();
   if(now>=nextShoot){spawnShooter();nextShoot=now+3500+Math.random()*4500;}
+  // Epic last star trigger
   if(window._fireLastStar){window._fireLastStar=false;spawnShooter(true);}
   updateShooters(dt);
 
-  for(let i=0;i<meshes.length;i++){
-    const m=meshes[i], d=meshData[i];
-    if(m===currentFocusMesh) continue;
-    const bob=Math.sin(t*d.speed+d.phase)*6;
-    const dir=_v3.set(d.baseX,d.baseY,d.baseZ).normalize();
-    m.position.set(d.baseX+dir.x*bob, d.baseY+dir.y*bob, d.baseZ+dir.z*bob);
-    if(d.frame) d.frame.position.copy(m.position).multiplyScalar(0.988);
-  }
-
+  // Update constellations
   projectMeshes();
   updateConstellations();
 
-  if(composer) composer.render(); else renderer.render(scene,camera);
+  renderer.render(scene,camera);
   if(!audio.paused&&audio.duration){
     const ct=audio.currentTime,dur=audio.duration;
     progBar.style.width=`${(ct/dur)*100}%`;
@@ -892,17 +736,15 @@ function explore(){
   busy=true;controls.enabled=false;
   const idx=getNextFocusIdx();
   const tg=meshes[idx];
-  currentFocusMesh=tg;
   const tp=new THREE.Vector3();tg.getWorldPosition(tp);
   const d=IS_MOB?520:360;
   const cp=tp.clone().normalize().multiplyScalar(700+d);
   gsap.to(camera.position,{duration:2.4,ease:'power3.inOut',x:cp.x,y:cp.y,z:cp.z});
   gsap.to(controls.target,{duration:2.4,ease:'power3.inOut',x:tp.x,y:tp.y,z:tp.z,
-    onComplete:()=>{busy=false;controls.enabled=true;showCaption();currentFocusMesh=null;}});
+    onComplete:()=>{busy=false;controls.enabled=true;}});
 }
 function orbitView(){
   if(busy)return;busy=true;controls.enabled=false;
-  currentFocusMesh=null;
   gsap.to(camera.position,{duration:2.2,ease:'power3.inOut',x:0,y:0,z:IS_MOB?2100:1550});
   gsap.to(controls.target,{duration:2.2,ease:'power3.inOut',x:0,y:0,z:0,
     onComplete:()=>{busy=false;controls.enabled=true;}});
@@ -916,7 +758,6 @@ window.addEventListener('resize',()=>{
   const W=window.innerWidth,H=window.innerHeight;
   camera.aspect=W/H;camera.fov=W<768?70:58;camera.updateProjectionMatrix();
   renderer.setSize(W,H);
-  if(composer) composer.setSize(W,H);
   if(starPts)starPts.material.uniforms.uDPR.value=Math.min(devicePixelRatio,2);
   resizeConCanvas();
 });
@@ -926,7 +767,7 @@ document.getElementById('start-btn').addEventListener('click',()=>{
   document.getElementById('splash').classList.add('out');
   setTimeout(()=>document.getElementById('splash')?.remove(),1500);
   buildScene();
-  tryPlayAudio();
+  audio.play().catch(()=>{musicBtn.classList.add('paused');musicLabel.textContent='Tap to play';});
 });
 </script>
 </body>
